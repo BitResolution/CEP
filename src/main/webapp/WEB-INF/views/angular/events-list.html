@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="insights-dashboard">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <meta name="description" content="Example application for the Complex Event Processing talk"/>
+    <meta name="author" content="bitresolution"/>
+    <link rel="icon" href="../resources/images/favicon.ico"/>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="../../resources/css/bootstrap.min.css" th:href="@{/resources/css/bootstrap.min.css}"/>
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="../../resources/css/dashboard.css" th:href="@{/resources/css/dashboard.css}"/>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="../../resources/js/utils/html5shiv.min.js" th:src="@{/resources/js/utils/html5shiv.min.js}"></script>
+    <script src="../../resources/js/utils/respond.min.js" th:src="@{/resources/js/utils/respond.min.js}"></script>
+    <![endif]-->
+
+    <script src="../../resources/js/jquery-1.11.3.min.js" th:src="@{/resources/js/jquery-1.11.3.min.js}"></script>
+    <script src="../../resources/js/bootstrap.min.js" th:src="@{/resources/js/bootstrap.min.js}"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../resources/js/utils/ie10-viewport-bug-workaround.js"
+            th:src="@{/resources/js/utils/ie10-viewport-bug-workaround.js}"></script>
+
+    <title ng-bind="$state.current.name">Insights</title>
+</head>
+
+<body th:fragment="content">
+<div ng-app='myApp' ng-controller='ListEventsController'>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Timestamp</th>
+                <th>Type</th>
+                <th>Content</th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll='events.nextPage()' infinite-scroll-disabled='events.busy'
+                   infinite-scroll-distance='1'>
+            <tr ng-repeat='event in events.items'>
+                <td>{{event.receivedTimestamp}}</td>
+                <td>{{event.type}}</td>
+                <td>{{event.content}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

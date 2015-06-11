@@ -1,6 +1,6 @@
 package com.bitresolution.cep.web;
 
-import com.bitresolution.cep.core.ApplicationConfig;
+import com.bitresolution.cep.application.ApplicationConfig;
 import com.bitresolution.cep.web.configuration.WebApplicationConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
