@@ -32,19 +32,18 @@
 </head>
 
 <body th:fragment="content">
-<div ng-app='myApp' ng-controller='ListEventsController'>
+<div ng-controller='EventTypesListController'>
+    <div class="right"><a </div>
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>Timestamp</th>
-                <th>Type</th>
-                <th>Content</th>
+                <th>Name</th>
+                <th>Attributes</th>
             </tr>
             </thead>
-            <tbody infinite-scroll='events.nextPage()' infinite-scroll-disabled='events.busy'
-                   infinite-scroll-distance='1'>
-            <tr ng-repeat='event in events.items'>
+            <tbody>
+            <tr ng-repeat='type in eventsTypes'>
                 <td>{{event.receivedTimestamp}}</td>
                 <td>{{event.type}}</td>
                 <td>{{event.content}}</td>
