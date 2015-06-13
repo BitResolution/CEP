@@ -1,4 +1,5 @@
 angular.module('insights.events', [
+    'insights.eventtypes',
     'ui.router',
     'infinite-scroll'
 ])
@@ -9,15 +10,12 @@ angular.module('insights.events', [
 
                 .state("events", {
                     url: "/events",
-                    template: "<ul class='nav nav-tabs'><li ui-sref-active='active'><a ui-sref='events.eventlog'>Event Log</a></li><li ui-sref-active='active'><a ui-sref='events.eventtypes'>Event Types</a></li></ul><div ui-view=''></div>",
+                    template: "<ul class='nav nav-tabs'><li ui-sref-active='active'><a ui-sref='events.eventtype.list'>Event Types</a></li><li ui-sref-active='active'><a ui-sref='events.eventlog'>Event Log</a></li></ul><div ui-view=''></div>",
                 })
                 .state("events.eventlog", {
                     url: "/event-log",
                     templateUrl: "view/events-log",
-                })
-                .state("events.eventtypes", {
-                    url: "/event-types",
-                    templateUrl: "view/event-types-list",
+                    controller: 'EventLogController'
                 })
         }
     ])
@@ -41,9 +39,6 @@ angular.module('insights.events', [
             });
         };
 
-    })
-    .controller('EventTypesListController', function($scope){
-        $scope.eventTypes = []
     })
 ;
 

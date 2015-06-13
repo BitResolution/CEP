@@ -18,7 +18,7 @@ public class CepEventType {
 
     private String name;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "ATTRIBUTE_ID", nullable = false)
     private List<CepEventAttribute> attributes;
 }

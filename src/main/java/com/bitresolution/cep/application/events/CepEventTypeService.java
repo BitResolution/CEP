@@ -38,4 +38,8 @@ public class CepEventTypeService {
             throw new ResourceNotFoundException();
         }
     }
+
+    public void delete(long id) {
+        repository.delete(id);
+    }
 }

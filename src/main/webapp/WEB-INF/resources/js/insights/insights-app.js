@@ -1,9 +1,8 @@
 // Make sure to include the `ui.router` module as a dependency
-angular.module('insights-dashboard', [
+angular.module('insights', [
     'ui.router',
     'ngAnimate',
     'insights.events',
-    'insights.utils.service',
 ])
 
     .run(
@@ -22,24 +21,15 @@ angular.module('insights-dashboard', [
     .config(
     [          '$stateProvider', '$urlRouterProvider',
         function ($stateProvider,   $urlRouterProvider) {
-
-            /////////////////////////////
-            // Redirects and Otherwise //
-            /////////////////////////////
             $urlRouterProvider
-            // when there is an empty route, redirect to /index
                 .when('', '/')
-                // If the url is ever invalid, e.g. '/asdf', then redirect to '/' aka the home state
-                .otherwise('/404');
+                .otherwise('404');
 
 
-            //////////////////////////
-            // State Configurations //
-            //////////////////////////
             $stateProvider
                 .state("dashboard", {
                     url: "/",
-                    templateUrl: "view/mock-content"
+                    templateUrl: "view/dashboard"
                 })
                 .state("streams", {
                     url: "/",

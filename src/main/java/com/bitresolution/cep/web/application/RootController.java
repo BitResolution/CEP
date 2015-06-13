@@ -10,7 +10,7 @@ public class RootController {
 
     @RequestMapping("/")
     public ModelAndView showHomepage() {
-        return new ModelAndView("dashboard");
+        return new ModelAndView("index");
     }
 
     @RequestMapping("/view/{viewName}")
