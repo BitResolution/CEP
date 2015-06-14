@@ -1,9 +1,11 @@
 package com.bitresolution.cep.application.events;
 
+import com.bitresolution.cep.application.rest.ResourceCanNotBeDeletedException;
 import com.bitresolution.cep.application.rest.ResourceNotFoundException;
+import com.bitresolution.cep.application.streams.CepStream;
+import com.bitresolution.cep.application.streams.CepStreamService;
 import com.google.common.base.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -14,23 +16,25 @@ import java.util.List;
 @Transactional
 public class CepEventTypeService {
 
-    private final CepEventTypeRepository repository;
+    private final CepEventTypeRepository eventTypeRepository;
+    private final CepStreamService streamService;
 
     @Autowired
-    public CepEventTypeService(CepEventTypeRepository repository) {
-        this.repository = repository;
+    public CepEventTypeService(CepEventTypeRepository eventTypeRepository, CepStreamService streamService) {
+        this.eventTypeRepository = eventTypeRepository;
+        this.streamService = streamService;
     }
 
     public List<CepEventType> findAll() {
-        return repository.findAll();
+        return eventTypeRepository.findAll();
     }
 
     public CepEventType save(CepEventType event) {
-        return repository.save(event);
+        return eventTypeRepository.save(event);
     }
 
     public CepEventType findById(long id) {
-        Optional<CepEventType> event = repository.findById(id);
+        Optional<CepEventType> event = eventTypeRepository.findById(id);
         if(event.isPresent()) {
             return event.get();
         }
@@ -40,6 +44,10 @@ public class CepEventTypeService {
     }
 
     public void delete(long id) {
-        repository.delete(id);
+        CepEventType eventType = findById(id);
+        if(streamService.findByCepEventType(eventType).size() > 0){
+            throw new ResourceCanNotBeDeletedException();
+        }
+        eventTypeRepository.delete(id);
     }
 }

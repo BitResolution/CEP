@@ -34,7 +34,7 @@
 <body th:fragment="content">
 <div class="text-right">
     <br />
-    <a class="btn btn-primary" ui-sref="events.eventtype.create">Create EventType</a>
+    <a class="btn btn-primary" ui-sref="event.eventtype.create">Create EventType</a>
 </div>
 
 <div class="table-responsive">
@@ -53,7 +53,7 @@
                     <li ng-repeat="attribute in type.attributes">{{attribute.name}} [{{attribute.type}}]</li>
                 </ul>
             </td>
-            <td><a class="btn-sm btn btn-primary" ui-sref="events.eventtype.edit({id: type.id})">Edit</a><a class="btn-sm btn btn-danger" ui-sref="events.eventtype.delete({id: type.id})">Delete</a></td>
+            <td><a class="btn-sm btn btn-primary" ui-sref="event.type.edit({id: type.id})">Edit</a> <a class="btn-sm btn btn-danger" ui-sref="event.eventtype.delete({id: type.id})">Delete</a></td>
         </tr>
         </tbody>
     </table>

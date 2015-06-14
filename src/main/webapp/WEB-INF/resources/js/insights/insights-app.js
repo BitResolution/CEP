@@ -2,7 +2,8 @@
 angular.module('insights', [
     'ui.router',
     'ngAnimate',
-    'insights.events',
+    'insights-events',
+    'insights-streams',
 ])
 
     .run(
@@ -30,10 +31,6 @@ angular.module('insights', [
                 .state("dashboard", {
                     url: "/",
                     templateUrl: "view/dashboard"
-                })
-                .state("streams", {
-                    url: "/",
-                    template: '<p class="lead">Streams</p>'
                 })
                 .state("scenarios", {
                     url: "/",

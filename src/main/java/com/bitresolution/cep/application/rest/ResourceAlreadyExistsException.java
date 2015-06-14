@@ -1,6 +1,6 @@
 package com.bitresolution.cep.application.rest;
 
-public class ResourceAlreadyExistsException extends RuntimeException {
+public class ResourceAlreadyExistsException extends ResourceException {
 
     private static final long serialVersionUID = -6445943330573843327L;
 

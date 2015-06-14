@@ -1,18 +1,16 @@
-angular.module('insights.events', [
-    'insights.eventtypes',
+angular.module('insights-events', [
+    'insights-event-types',
     'ui.router',
     'infinite-scroll'
 ])
-    .config(
-    [ '$stateProvider', '$urlRouterProvider',
-        function ($stateProvider, $urlRouterProvider) {
+    .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+        $urlRouterProvider.when("/event", "/event-type");
             $stateProvider
-
-                .state("events", {
-                    url: "/events",
-                    template: "<ul class='nav nav-tabs'><li ui-sref-active='active'><a ui-sref='events.eventtype.list'>Event Types</a></li><li ui-sref-active='active'><a ui-sref='events.eventlog'>Event Log</a></li></ul><div ui-view=''></div>",
+                .state("event", {
+                    url: "/event",
+                    template: "<ul class='nav nav-tabs'><li ui-sref-active='active'><a ui-sref='event.eventtype.list'>Event Types</a></li><li ui-sref-active='active'><a ui-sref='event.eventlog'>Event Log</a></li></ul><div ui-view=''></div>",
                 })
-                .state("events.eventlog", {
+                .state("event.eventlog", {
                     url: "/event-log",
                     templateUrl: "view/events-log",
                     controller: 'EventLogController'

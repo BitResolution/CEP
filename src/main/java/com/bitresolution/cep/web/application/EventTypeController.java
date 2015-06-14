@@ -1,10 +1,8 @@
 package com.bitresolution.cep.web.application;
 
-import com.bitresolution.cep.application.events.CepEvent;
 import com.bitresolution.cep.application.events.CepEventType;
 import com.bitresolution.cep.application.events.CepEventTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;

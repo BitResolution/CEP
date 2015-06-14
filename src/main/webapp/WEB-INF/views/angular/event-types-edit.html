@@ -62,7 +62,7 @@
                                    placeholder="Attribute name"/></td>
                         <td><select class="form-control" ng-model="attribute.type"
                                     ng-options="attributeType.value as attributeType.name for attributeType in $state.current.data.attributeTypes">
-                            <option value="" ng-if="attribute.type">Choose a type</option>
+                            <option value="" ng-if="!attribute.type">Choose a type</option>
                         </select></td>
                         <td><a class="btn-sm btn btn-danger" ng-click="removeAttribute(attribute.id, attribute.name, attribute.type)">Delete</a></td>
                     </tr>
