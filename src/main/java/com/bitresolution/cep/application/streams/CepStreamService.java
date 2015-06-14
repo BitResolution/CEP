@@ -1,8 +1,11 @@
 package com.bitresolution.cep.application.streams;
 
+import com.bitresolution.cep.application.engine.CepEngine;
 import com.bitresolution.cep.application.engine.CepEventType;
+import com.bitresolution.cep.application.partitions.CepPartition;
 import com.bitresolution.cep.application.rest.ResourceNotFoundException;
 import com.google.common.base.Optional;
+import com.google.common.base.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,10 +17,12 @@ import java.util.List;
 public class CepStreamService {
 
     private final CepStreamRepository repository;
+    private final CepEngine engine;
 
     @Autowired
-    public CepStreamService(CepStreamRepository repository) {
+    public CepStreamService(CepStreamRepository repository, CepEngine engine) {
         this.repository = repository;
+        this.engine = engine;
     }
 
     public List<CepStream> findAll() {
@@ -35,11 +40,21 @@ public class CepStreamService {
     }
 
     public CepStream save(CepStream cepStream) {
-        return repository.save(cepStream);
+        boolean isUpdate = Strings.isNullOrEmpty(cepStream.getName());
+        CepStream persistedStream = repository.save(cepStream);
+        if(isUpdate) {
+            engine.updateStream(persistedStream);
+        }
+        else {
+            engine.addStream(persistedStream);
+        }
+        return persistedStream;
     }
 
     public void delete(long id) {
+        CepStream stream = findById(id);
         repository.delete(id);
+        engine.deleteStream(stream);
     }
 
     public List<CepStream> findByCepEventType(CepEventType eventType) {

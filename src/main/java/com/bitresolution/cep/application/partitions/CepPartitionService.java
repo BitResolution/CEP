@@ -1,7 +1,9 @@
 package com.bitresolution.cep.application.partitions;
 
+import com.bitresolution.cep.application.engine.CepEngine;
 import com.bitresolution.cep.application.rest.ResourceNotFoundException;
 import com.google.common.base.Optional;
+import com.google.common.base.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,10 +15,12 @@ import java.util.List;
 public class CepPartitionService {
 
     private final CepPartitionRepository repository;
+    private final CepEngine engine;
 
     @Autowired
-    public CepPartitionService(CepPartitionRepository repository) {
+    public CepPartitionService(CepPartitionRepository repository, CepEngine engine) {
         this.repository = repository;
+        this.engine = engine;
     }
 
     public List<CepPartition> findAll() {
@@ -34,10 +38,20 @@ public class CepPartitionService {
     }
 
     public CepPartition save(CepPartition cepPartition) {
-        return repository.save(cepPartition);
+        boolean isUpdate = Strings.isNullOrEmpty(cepPartition.getName());
+        CepPartition persistedPartition = repository.save(cepPartition);
+        if(isUpdate) {
+            engine.updatePartition(persistedPartition);
+        }
+        else {
+            engine.addPartition(persistedPartition);
+        }
+        return persistedPartition;
     }
 
     public void delete(long id) {
+        CepPartition partition = findById(id);
         repository.delete(id);
+        engine.deletePartition(partition);
     }
 }
