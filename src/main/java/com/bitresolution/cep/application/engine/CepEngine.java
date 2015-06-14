@@ -3,6 +3,7 @@ package com.bitresolution.cep.application.engine;
 import com.bitresolution.cep.application.partitions.CepPartition;
 import com.bitresolution.cep.application.queries.CepQuery;
 import com.bitresolution.cep.application.streams.CepStream;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.wso2.siddhi.core.SiddhiManager;
 import org.wso2.siddhi.core.stream.input.InputHandler;
@@ -20,6 +21,7 @@ public class CepEngine {
     private final CepInputHandlerAdapterRegistry handlerAdapterRegistry;
     private final Map<Object, String> cache;
 
+    @Autowired
     public CepEngine(SiddhiManager siddhiManager, CepInputHandlerAdapterRegistry handlerAdapterRegistry) {
         this.siddhiManager = siddhiManager;
         this.handlerAdapterRegistry = handlerAdapterRegistry;
