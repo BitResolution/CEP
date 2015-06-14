@@ -1,5 +1,9 @@
-package com.bitresolution.cep.application.engine;
+package com.bitresolution.cep.application.engine.events;
 
+import com.bitresolution.cep.application.engine.eventtypes.CepEventType;
+import com.bitresolution.cep.application.engine.eventtypes.CepEventTypeService;
+import com.bitresolution.cep.application.engine.CepInputHandlerAdapter;
+import com.bitresolution.cep.application.engine.CepInputHandlerAdapterRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

@@ -1,4 +1,4 @@
-package com.bitresolution.cep.application.engine;
+package com.bitresolution.cep.application.engine.events;
 
 import com.bitresolution.cep.application.rest.ResourceNotFoundException;
 import com.google.common.base.Optional;

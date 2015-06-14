@@ -1,5 +1,6 @@
 package com.bitresolution.cep.application.engine;
 
+import com.bitresolution.cep.application.engine.eventtypes.CepEventType;
 import com.bitresolution.cep.application.streams.CepStream;
 import com.bitresolution.cep.application.streams.CepStreamService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,5 +1,8 @@
 package com.bitresolution.cep.application.engine;
 
+import com.bitresolution.cep.application.engine.events.CepEvent;
+import com.bitresolution.cep.application.engine.eventtypes.CepEventType;
+import com.bitresolution.cep.application.engine.eventtypes.CepEventTypeMapper;
 import org.json.simple.parser.ParseException;
 import org.wso2.siddhi.core.stream.input.InputHandler;
 

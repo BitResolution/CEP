@@ -1,4 +1,4 @@
-package com.bitresolution.cep.application.engine;
+package com.bitresolution.cep.application.engine.eventtypes;
 
 import com.bitresolution.cep.application.rest.ResourceCanNotBeDeletedException;
 import com.bitresolution.cep.application.rest.ResourceNotFoundException;

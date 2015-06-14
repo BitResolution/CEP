@@ -1,7 +1,7 @@
 package com.bitresolution.cep.application.streams;
 
 
-import com.bitresolution.cep.application.engine.CepEventType;
+import com.bitresolution.cep.application.engine.eventtypes.CepEventType;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;

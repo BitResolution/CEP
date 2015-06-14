@@ -1,13 +1,17 @@
 package com.bitresolution.cep.application.engine;
 
+import com.bitresolution.cep.application.engine.events.CepEvent;
+import com.bitresolution.cep.application.engine.eventtypes.CepEventType;
+import com.bitresolution.cep.application.engine.eventtypes.CepEventTypeAttributeType;
+import com.bitresolution.cep.application.engine.eventtypes.CepEventTypeMapper;
 import org.json.simple.parser.ParseException;
 import org.junit.Test;
 
 import java.util.Date;
 
-import static com.bitresolution.cep.application.engine.CepEvent.cepEvent;
-import static com.bitresolution.cep.application.engine.CepEventAttribute.cepEventAttribute;
-import static com.bitresolution.cep.application.engine.CepEventType.cepEventType;
+import static com.bitresolution.cep.application.engine.events.CepEvent.cepEvent;
+import static com.bitresolution.cep.application.engine.eventtypes.CepEventTypeAttribute.cepEventAttribute;
+import static com.bitresolution.cep.application.engine.eventtypes.CepEventType.cepEventType;
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -22,12 +26,12 @@ public class CepEventTypeMapperTest {
         CepEventType eventType = cepEventType()
                 .name("AllTypesEvent")
                 .attributes(asList(
-                        cepEventAttribute().name("intType").type(AttributeType.INT).build(),
-                        cepEventAttribute().name("longType").type(AttributeType.LONG).build(),
-                        cepEventAttribute().name("doubleType").type(AttributeType.DOUBLE).build(),
-                        cepEventAttribute().name("floatType").type(AttributeType.FLOAT).build(),
-                        cepEventAttribute().name("stringType").type(AttributeType.STRING).build(),
-                        cepEventAttribute().name("booleanType").type(AttributeType.BOOLEAN).build()
+                        cepEventAttribute().name("intType").type(CepEventTypeAttributeType.INT).build(),
+                        cepEventAttribute().name("longType").type(CepEventTypeAttributeType.LONG).build(),
+                        cepEventAttribute().name("doubleType").type(CepEventTypeAttributeType.DOUBLE).build(),
+                        cepEventAttribute().name("floatType").type(CepEventTypeAttributeType.FLOAT).build(),
+                        cepEventAttribute().name("stringType").type(CepEventTypeAttributeType.STRING).build(),
+                        cepEventAttribute().name("booleanType").type(CepEventTypeAttributeType.BOOLEAN).build()
                 )).build();
 
         CepEvent event = cepEvent().type("AllTypesEvent").receivedTimestamp(new Date()).contents("{" +

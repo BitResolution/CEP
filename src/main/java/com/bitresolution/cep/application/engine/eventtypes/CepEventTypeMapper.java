@@ -1,5 +1,6 @@
-package com.bitresolution.cep.application.engine;
+package com.bitresolution.cep.application.engine.eventtypes;
 
+import com.bitresolution.cep.application.engine.events.CepEvent;
 import org.json.simple.parser.ContainerFactory;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -16,7 +17,7 @@ public class CepEventTypeMapper {
 
         Object[] data = new Object[eventType.getAttributes().size()];
         for(int i = 0; i < eventType.getAttributes().size(); i++) {
-            CepEventAttribute attribute = eventType.getAttributes().get(i);
+            CepEventTypeAttribute attribute = eventType.getAttributes().get(i);
             switch(attribute.getType()) {
                 case INT:
                     data[i] = ((Number) json.get(attribute.getName())).intValue();
@@ -43,7 +44,7 @@ public class CepEventTypeMapper {
                     break;
 
                 default:
-                    throw new IllegalStateException("Unexpected AttributeType: " + attribute.getType());
+                    throw new IllegalStateException("Unexpected CepEventTypeAttributeType: " + attribute.getType());
             }
         }
         return data;

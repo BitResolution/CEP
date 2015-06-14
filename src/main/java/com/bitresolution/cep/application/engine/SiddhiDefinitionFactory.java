@@ -1,5 +1,6 @@
 package com.bitresolution.cep.application.engine;
 
+import com.bitresolution.cep.application.engine.eventtypes.CepEventTypeAttribute;
 import com.bitresolution.cep.application.partitions.CepPartition;
 import com.bitresolution.cep.application.queries.CepQuery;
 import com.bitresolution.cep.application.streams.CepStream;
@@ -12,7 +13,7 @@ public class SiddhiDefinitionFactory {
     public static StreamDefinition createStreamDefinition(CepStream stream) {
         StreamDefinition definition = new StreamDefinition();
         definition.name(stream.getName());
-        for(CepEventAttribute attribute : stream.getEventType().getAttributes()) {
+        for(CepEventTypeAttribute attribute : stream.getEventType().getAttributes()) {
             definition.attribute(attribute.getName(), attribute.getType().siddhiType());
         }
         return definition;

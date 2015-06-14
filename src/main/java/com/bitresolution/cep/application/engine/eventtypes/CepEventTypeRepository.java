@@ -1,4 +1,4 @@
-package com.bitresolution.cep.application.engine;
+package com.bitresolution.cep.application.engine.eventtypes;
 
 import com.google.common.base.Optional;
 import org.springframework.data.repository.CrudRepository;

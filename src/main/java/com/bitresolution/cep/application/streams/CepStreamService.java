@@ -1,8 +1,7 @@
 package com.bitresolution.cep.application.streams;
 
 import com.bitresolution.cep.application.engine.CepEngine;
-import com.bitresolution.cep.application.engine.CepEventType;
-import com.bitresolution.cep.application.partitions.CepPartition;
+import com.bitresolution.cep.application.engine.eventtypes.CepEventType;
 import com.bitresolution.cep.application.rest.ResourceNotFoundException;
 import com.google.common.base.Optional;
 import com.google.common.base.Strings;

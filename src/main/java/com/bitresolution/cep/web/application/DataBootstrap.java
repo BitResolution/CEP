@@ -1,8 +1,8 @@
 package com.bitresolution.cep.web.application;
 
-import com.bitresolution.cep.application.engine.AttributeType;
-import com.bitresolution.cep.application.engine.CepEventType;
-import com.bitresolution.cep.application.engine.CepEventTypeService;
+import com.bitresolution.cep.application.engine.eventtypes.CepEventTypeAttributeType;
+import com.bitresolution.cep.application.engine.eventtypes.CepEventType;
+import com.bitresolution.cep.application.engine.eventtypes.CepEventTypeService;
 import com.bitresolution.cep.application.partitions.CepPartition;
 import com.bitresolution.cep.application.partitions.CepPartitionService;
 import com.bitresolution.cep.application.streams.CepStream;
@@ -15,8 +15,8 @@ import org.springframework.stereotype.Component;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.bitresolution.cep.application.engine.CepEventAttribute.cepEventAttribute;
-import static com.bitresolution.cep.application.engine.CepEventType.cepEventType;
+import static com.bitresolution.cep.application.engine.eventtypes.CepEventTypeAttribute.cepEventAttribute;
+import static com.bitresolution.cep.application.engine.eventtypes.CepEventType.cepEventType;
 import static java.util.Arrays.asList;
 
 @Component
@@ -57,11 +57,11 @@ public class DataBootstrap implements ApplicationListener<ContextRefreshedEvent>
         create(cepEventType()
                         .name(GC_EVENT)
                         .attributes(asList(
-                                cepEventAttribute().name("machine_id").type(AttributeType.STRING).build(),
-                                cepEventAttribute().name("full").type(AttributeType.BOOLEAN).build(),
-                                cepEventAttribute().name("live_heap_size_before").type(AttributeType.LONG).build(),
-                                cepEventAttribute().name("live_heap_size_after").type(AttributeType.LONG).build(),
-                                cepEventAttribute().name("time_taken").type(AttributeType.LONG).build()
+                                cepEventAttribute().name("machine_id").type(CepEventTypeAttributeType.STRING).build(),
+                                cepEventAttribute().name("full").type(CepEventTypeAttributeType.BOOLEAN).build(),
+                                cepEventAttribute().name("live_heap_size_before").type(CepEventTypeAttributeType.LONG).build(),
+                                cepEventAttribute().name("live_heap_size_after").type(CepEventTypeAttributeType.LONG).build(),
+                                cepEventAttribute().name("time_taken").type(CepEventTypeAttributeType.LONG).build()
                         ))
                         .build()
         );
@@ -69,7 +69,7 @@ public class DataBootstrap implements ApplicationListener<ContextRefreshedEvent>
         create(cepEventType()
                         .name(OUT_OF_MEMORY_EVENT)
                         .attributes(asList(
-                                cepEventAttribute().name("machine_id").type(AttributeType.STRING).build()
+                                cepEventAttribute().name("machine_id").type(CepEventTypeAttributeType.STRING).build()
                         ))
                         .build()
         );
