@@ -47,7 +47,7 @@ public class StreamController {
         return ResponseEntity.ok(persistedEvent);
     }
 
-    @RequestMapping(value = "/stream/{id}", method = RequestMethod.DELETE, consumes = "application/json", produces = "application/json")
+    @RequestMapping(value = "/stream/{id}", method = RequestMethod.DELETE, produces = "application/json")
     public ResponseEntity<Void> deleteEvent(@PathVariable long id) {
         streamService.delete(id);
         return ResponseEntity.ok(null);

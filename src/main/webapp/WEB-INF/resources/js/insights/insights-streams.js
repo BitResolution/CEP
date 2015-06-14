@@ -23,7 +23,8 @@ angular.module('insights-streams', [
             .state("stream.list", {
                 url: "/list",
                 templateUrl: "view/streams-list",
-                controller: "ListStreamsController"
+                controller: "ListStreamsController",
+                cache: false
             })
 
     }
@@ -38,6 +39,21 @@ angular.module('insights-streams', [
 
     .controller('ListStreamsController', ['$scope', 'Stream', function ($scope, Stream) {
         $scope.streams = Stream.query();
+
+        $scope.delete = function (stream) {
+            stream.$delete(
+                function (result) {
+                    for(var i = 0; i < $scope.streams.length; i++) {
+                        if($scope.streams[i].id == stream.id) {
+                            $scope.streams.splice(i, 1);
+                        }
+                    }
+                },
+                function (error) {
+                    console.log("Error deleting Stream: " + stream.name + ", " + JSON.stringify(error))
+                }
+            );
+        };
     }])
 
     .controller('EditStreamController', ['$scope', '$state', '$stateParams', 'Stream', 'EventType', function ($scope, $state, $stateParams, Stream, EventType) {

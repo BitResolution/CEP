@@ -50,7 +50,7 @@
         <tr ng-repeat='stream in streams'>
             <td>{{stream.name}}</td>
             <td><a ui-sref="event.type.edit(stream.eventType.id)">{{stream.eventType.name}}</a></td>
-            <td><a class="btn-sm btn btn-primary" ui-sref="stream.edit({id: type.id})">Edit</a> <a class="btn-sm btn btn-danger" ui-sref="stream.delete({id: type.id})">Delete</a></td>
+            <td><a class="btn-sm btn btn-primary" ui-sref="stream.edit({id: stream.id})">Edit</a> <a class="btn-sm btn btn-danger" ng-click="delete(stream)">Delete</a></td>
         </tr>
         </tbody>
     </table>

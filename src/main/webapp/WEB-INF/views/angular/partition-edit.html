@@ -32,32 +32,33 @@
 </head>
 
 <body th:fragment="content">
-<div class="text-right">
-    <br />
-    <a class="btn btn-primary" ui-sref="event.eventtype.create">Create EventType</a>
-</div>
+<div>
+    <div class="h1">Create new Partition</div>
+    <form class="form-horizontal">
+        <input type="hidden" ng-model="partition.id"/>
+        <div class="form-group">
+            <label for="partition.name" class="col-sm-2 control-label">Name</label>
 
-<div class="table-responsive">
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Attributes</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat='type in eventTypes'>
-            <td>{{type.name}}</td>
-            <td>
-                <ul>
-                    <li ng-repeat="attribute in type.attributes">{{attribute.name}} [{{attribute.type}}]</li>
-                </ul>
-            </td>
-            <td><a class="btn-sm btn btn-primary" ui-sref="event.type.edit({id: type.id})">Edit</a> <a class="btn-sm btn btn-danger" ng-click="delete(type)">Delete</a></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
+            <div class="col-sm-6">
+                <input id="partition.name" ng-model="partition.name" type="text" class="form-control"
+                       placeholder="Type name"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="partition.definition" class="col-sm-2 control-label">Name</label>
 
+            <div class="col-sm-6">
+                <input id="partition.definition" ng-model="partition.definition" type="textbox" class="form-control"
+                       placeholder="Define partition"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default" ng-click="save()">Save</button>
+                <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>
 </body>
 </html>

@@ -4,6 +4,7 @@ angular.module('insights', [
     'ngAnimate',
     'insights-events',
     'insights-streams',
+    'insights-partitions',
 ])
 
     .run(

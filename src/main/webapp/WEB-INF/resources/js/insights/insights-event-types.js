@@ -1,4 +1,4 @@
-var eventTypes = angular.module('insights-event-types', [
+angular.module('insights-event-types', [
     'ui.router',
     'ngResource',
 ])
@@ -41,12 +41,28 @@ var eventTypes = angular.module('insights-event-types', [
             .state("event.eventtype.list", {
                 url: "/list",
                 templateUrl: "view/event-types-list",
-                controller: "EventTypesListController"
+                controller: "EventTypesListController",
+                cache: false
             })
     }])
 
-    .controller('EventTypesListController', ['$scope', 'EventType', function ($scope, EventType) {
+    .controller('EventTypesListController', ['$scope', '$state', 'EventType', function ($scope, $state, EventType) {
         $scope.eventTypes = EventType.query();
+
+        $scope.delete = function (eventType) {
+            eventType.$delete(
+                function (result) {
+                    for(var i = 0; i < $scope.eventTypes.length; i++) {
+                        if($scope.eventTypes[i].id == eventType.id) {
+                            $scope.eventTypes.splice(i, 1);
+                        }
+                    }
+                },
+                function (error) {
+                    console.log("Error deleting EventType: " + name + ", " + JSON.stringify(error))
+                }
+            );
+        };
     }])
 
     .controller('EditEventTypesController', ['$scope', '$state', '$stateParams', 'EventType', function ($scope, $state, $stateParams, EventType) {
@@ -108,8 +124,5 @@ var eventTypes = angular.module('insights-event-types', [
         }
 
     }])
-
-    .controller('DeleteEventTypesController', ['$scope', 'EventType', function ($scope, EventType) {
-        $scope.eventType = EventType.delete({ id: $stateParams.id });
-    }]);
+;
 

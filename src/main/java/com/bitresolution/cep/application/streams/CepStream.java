@@ -22,7 +22,7 @@ public class CepStream {
     @Column
     private String name;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "EVENTTYPE_ID", nullable = false)
     private CepEventType eventType;
 
