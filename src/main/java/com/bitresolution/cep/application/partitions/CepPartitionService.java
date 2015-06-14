@@ -5,7 +5,6 @@ import com.google.common.base.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.wso2.siddhi.core.SiddhiManager;
 
 import java.util.List;
 
@@ -13,12 +12,10 @@ import java.util.List;
 @Transactional
 public class CepPartitionService {
 
-    private final SiddhiManager siddhiManager;
     private final CepPartitionRepository repository;
 
     @Autowired
-    public CepPartitionService(CepPartitionRepository repository, SiddhiManager siddhiManager) {
-        this.siddhiManager = siddhiManager;
+    public CepPartitionService(CepPartitionRepository repository) {
         this.repository = repository;
     }
 

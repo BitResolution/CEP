@@ -1,11 +1,10 @@
-package com.bitresolution.cep.application.events;
+package com.bitresolution.cep.application.engine;
 
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Data
 @NoArgsConstructor

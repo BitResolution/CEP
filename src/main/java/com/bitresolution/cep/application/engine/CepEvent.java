@@ -1,4 +1,4 @@
-package com.bitresolution.cep.application.events;
+package com.bitresolution.cep.application.engine;
 
 
 import lombok.Builder;
@@ -19,7 +19,7 @@ public class CepEvent {
     private Long id;
 
     @Column
-    private Class type;
+    private String type;
 
     @Lob
     private String contents;
@@ -27,7 +27,7 @@ public class CepEvent {
     @Column
     private Date receivedTimestamp;
 
-    public CepEvent(Long id, Class type, String contents, Date receivedTimestamp) {
+    public CepEvent(Long id, String type, String contents, Date receivedTimestamp) {
         this.id = id;
         this.type = type;
         this.contents = contents;

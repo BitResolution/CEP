@@ -1,7 +1,5 @@
 package com.bitresolution.cep.application.partitions;
 
-import com.bitresolution.cep.application.events.CepEventType;
-import com.bitresolution.cep.application.streams.CepStream;
 import com.google.common.base.Optional;
 import org.springframework.data.repository.CrudRepository;
 

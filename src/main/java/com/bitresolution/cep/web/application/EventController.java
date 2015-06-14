@@ -1,7 +1,7 @@
 package com.bitresolution.cep.web.application;
 
-import com.bitresolution.cep.application.events.CepEvent;
-import com.bitresolution.cep.application.events.CepEventService;
+import com.bitresolution.cep.application.engine.CepEvent;
+import com.bitresolution.cep.application.engine.CepEventService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,9 +29,8 @@ public class EventController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<CepEvent> saveEvent(@PathVariable long id) {
-        CepEvent persistedEvent = eventService.findById(id);
-        return ResponseEntity.ok(persistedEvent);
+    public ResponseEntity<CepEvent> findEventById(@PathVariable long id) {
+        return ResponseEntity.ok(eventService.findById(id));
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = "application/json")

@@ -1,10 +1,9 @@
-package com.bitresolution.cep.application.events;
+package com.bitresolution.cep.application.engine;
 
 import com.bitresolution.cep.application.rest.ResourceNotFoundException;
 import com.google.common.base.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -16,10 +15,12 @@ import java.util.List;
 public class CepEventService {
 
     private final CepEventRepository repository;
+    private final CepEventPublisher publisher;
 
     @Autowired
-    public CepEventService(CepEventRepository repository) {
+    public CepEventService(CepEventRepository repository, CepEventPublisher publisher) {
         this.repository = repository;
+        this.publisher = publisher;
     }
 
     public List<CepEvent> findAll() {
@@ -27,7 +28,9 @@ public class CepEventService {
     }
 
     public CepEvent save(CepEvent event) {
-        return repository.save(event);
+        CepEvent cepEvent = repository.save(event);
+        publisher.publish(cepEvent);
+        return cepEvent;
     }
 
     public CepEvent findById(long id) {

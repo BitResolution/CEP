@@ -1,4 +1,4 @@
-package com.bitresolution.cep.application.events;
+package com.bitresolution.cep.application.engine;
 
 import lombok.Builder;
 import lombok.Data;
@@ -7,7 +7,6 @@ import lombok.Singular;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Data

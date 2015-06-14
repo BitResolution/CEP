@@ -1,8 +1,7 @@
-package com.bitresolution.cep.application.events;
+package com.bitresolution.cep.application.engine;
 
 import com.bitresolution.cep.application.rest.ResourceCanNotBeDeletedException;
 import com.bitresolution.cep.application.rest.ResourceNotFoundException;
-import com.bitresolution.cep.application.streams.CepStream;
 import com.bitresolution.cep.application.streams.CepStreamService;
 import com.google.common.base.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,9 +44,20 @@ public class CepEventTypeService {
 
     public void delete(long id) {
         CepEventType eventType = findById(id);
-        if(streamService.findByCepEventType(eventType).size() > 0){
+        if(streamService.findByCepEventType(eventType).size() > 0) {
             throw new ResourceCanNotBeDeletedException();
         }
         eventTypeRepository.delete(id);
+    }
+
+
+    public CepEventType findByName(String name) {
+        Optional<CepEventType> event = eventTypeRepository.findByName(name);
+        if(event.isPresent()) {
+            return event.get();
+        }
+        else {
+            throw new ResourceNotFoundException();
+        }
     }
 }

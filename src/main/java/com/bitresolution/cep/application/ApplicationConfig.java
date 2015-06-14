@@ -23,6 +23,6 @@ public class ApplicationConfig {
 
     @Bean
     public SiddhiManager siddhiManager(SiddhiConfiguration siddhiConfiguration) {
-        return new SiddhiManager();
+        return new SiddhiManager(siddhiConfiguration);
     }
 }

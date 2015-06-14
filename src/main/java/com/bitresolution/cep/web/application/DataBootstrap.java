@@ -1,8 +1,8 @@
 package com.bitresolution.cep.web.application;
 
-import com.bitresolution.cep.application.events.AttributeType;
-import com.bitresolution.cep.application.events.CepEventType;
-import com.bitresolution.cep.application.events.CepEventTypeService;
+import com.bitresolution.cep.application.engine.AttributeType;
+import com.bitresolution.cep.application.engine.CepEventType;
+import com.bitresolution.cep.application.engine.CepEventTypeService;
 import com.bitresolution.cep.application.partitions.CepPartition;
 import com.bitresolution.cep.application.partitions.CepPartitionService;
 import com.bitresolution.cep.application.streams.CepStream;
@@ -15,8 +15,8 @@ import org.springframework.stereotype.Component;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.bitresolution.cep.application.events.CepEventAttribute.cepEventAttribute;
-import static com.bitresolution.cep.application.events.CepEventType.cepEventType;
+import static com.bitresolution.cep.application.engine.CepEventAttribute.cepEventAttribute;
+import static com.bitresolution.cep.application.engine.CepEventType.cepEventType;
 import static java.util.Arrays.asList;
 
 @Component

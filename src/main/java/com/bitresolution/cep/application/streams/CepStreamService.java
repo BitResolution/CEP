@@ -1,12 +1,11 @@
 package com.bitresolution.cep.application.streams;
 
-import com.bitresolution.cep.application.events.CepEventType;
+import com.bitresolution.cep.application.engine.CepEventType;
 import com.bitresolution.cep.application.rest.ResourceNotFoundException;
 import com.google.common.base.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.wso2.siddhi.core.SiddhiManager;
 
 import java.util.List;
 
@@ -14,12 +13,10 @@ import java.util.List;
 @Transactional
 public class CepStreamService {
 
-    private final SiddhiManager siddhiManager;
     private final CepStreamRepository repository;
 
     @Autowired
-    public CepStreamService(CepStreamRepository repository, SiddhiManager siddhiManager) {
-        this.siddhiManager = siddhiManager;
+    public CepStreamService(CepStreamRepository repository) {
         this.repository = repository;
     }
 
