@@ -94,10 +94,8 @@ angular.module('insights-event-types', [
 
         $scope.save = function () {
             if ($scope.eventType.id == undefined || $scope.eventType.id == "") {
-                console.log("Saving EventType: " + JSON.stringify($scope.eventType));
                 $scope.eventType.$save(
                     function (success) {
-                        console.log("Succesfully saved EventType");
                         $state.go("event.eventtype.list");
                     },
                     function (error) {
@@ -106,10 +104,8 @@ angular.module('insights-event-types', [
                 );
             }
             else {
-                console.log("Updating EventType: " + JSON.stringify($scope.eventType));
                 $scope.eventType.$update(
                     function (success) {
-                        console.log("Succesfully saved EventType");
                         $state.go("event.eventtype.list");
                     },
                     function (error) {

@@ -57,7 +57,6 @@ angular.module('insights-partitions', [
 
     .controller('EditPartitionController', ['$scope', '$state', '$stateParams', 'Partition', 'EventType', function ($scope, $state, $stateParams, Partition, EventType) {
         $scope.eventTypes = EventType.query();
-        console.log("Loaded eventTypes: " + JSON.stringify($scope.eventTypes));
 
         if ($stateParams.id == undefined) {
             $scope.partition = new Partition();
@@ -70,7 +69,6 @@ angular.module('insights-partitions', [
 
         $scope.save = function () {
             if ($scope.partition.id == undefined || $scope.partition.id == "") {
-                console.log("Saving Partition: " + JSON.stringify($scope.partition));
                 $scope.partition.$save(
                     function (success) {
                         $state.go("partition.list");
@@ -81,7 +79,6 @@ angular.module('insights-partitions', [
                 );
             }
             else {
-                console.log("Updating Partition: " + JSON.stringify($scope.partition));
                 $scope.partition.$update(
                     function (success) {
                         $state.go("partition.list");

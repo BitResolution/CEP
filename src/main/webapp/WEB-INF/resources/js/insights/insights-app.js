@@ -5,6 +5,7 @@ angular.module('insights', [
     'insights-events',
     'insights-streams',
     'insights-partitions',
+    'insights-queries',
 ])
 
     .run(

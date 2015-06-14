@@ -58,7 +58,6 @@ angular.module('insights-streams', [
 
     .controller('EditStreamController', ['$scope', '$state', '$stateParams', 'Stream', 'EventType', function ($scope, $state, $stateParams, Stream, EventType) {
         $scope.eventTypes = EventType.query();
-        console.log("Loaded eventTypes: " + JSON.stringify($scope.eventTypes));
 
         if ($stateParams.id == undefined) {
             $scope.stream = new Stream();
@@ -71,7 +70,6 @@ angular.module('insights-streams', [
 
         $scope.save = function () {
             if ($scope.stream.id == undefined || $scope.stream.id == "") {
-                console.log("Saving Stream: " + JSON.stringify($scope.stream));
                 $scope.stream.$save(
                     function (success) {
                         $state.go("stream.list");
@@ -82,7 +80,6 @@ angular.module('insights-streams', [
                 );
             }
             else {
-                console.log("Updating Stream: " + JSON.stringify($scope.stream));
                 $scope.stream.$update(
                     function (success) {
                         $state.go("stream.list");
