@@ -6,6 +6,7 @@ angular.module('insights', [
     'insights-streams',
     'insights-partitions',
     'insights-queries',
+    'insights-event-handlers',
 ])
 
     .run(
@@ -34,20 +35,12 @@ angular.module('insights', [
                     url: "/",
                     templateUrl: "view/dashboard"
                 })
-                .state("scenarios", {
-                    url: "/",
-                    template: '<p class="lead">Scenarios</p>'
-                })
-                .state("analytics", {
-                    url: "/",
-                    template: '<p class="lead">Analytics</p>'
-                })
                 .state("help", {
-                    url: "/",
-                    template: '<p class="lead">Analytics</p>'
+                    url: "/help",
+                    template: '<p class="lead">Help</p>'
                 })
                 .state("404", {
-                    url: "/",
+                    url: "/404",
                     template: '<p class="lead">Requested URL not found :(</p>'
                 })
         }

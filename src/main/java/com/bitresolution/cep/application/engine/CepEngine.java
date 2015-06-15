@@ -1,5 +1,9 @@
 package com.bitresolution.cep.application.engine;
 
+import com.bitresolution.cep.application.engine.eventhandlers.CepEventHandler;
+import com.bitresolution.cep.application.engine.eventhandlers.StreamConsumer;
+import com.bitresolution.cep.application.engine.eventhandlers.StreamConsumerFactory;
+import com.bitresolution.cep.application.engine.eventhandlers.StreamConsumerFactoryService;
 import com.bitresolution.cep.application.partitions.CepPartition;
 import com.bitresolution.cep.application.queries.CepQuery;
 import com.bitresolution.cep.application.streams.CepStream;
@@ -24,6 +28,9 @@ public class CepEngine {
     private SiddhiManager siddhiManager;
     @Autowired
     private CepInputHandlerAdapterRegistry handlerAdapterRegistry;
+    @Autowired
+    private StreamConsumerFactoryService factoryService;
+
     private Map<Object, String> cache;
 
     public CepEngine() {
@@ -113,4 +120,30 @@ public class CepEngine {
         addQuery(query);
         log.info("Updated Siddhi query: " + query);
     }
+
+    public void addEventHandler(CepEventHandler eventHandler) {
+        if(cache.get(eventHandler) != null) {
+            throw new EventHandlerAlreadyExistsException(eventHandler);
+        }
+        StreamConsumerFactory<? extends StreamConsumer> factory = factoryService.findByStreamConsumer(eventHandler.getStreamConsumer());
+        StreamConsumer consumer = factory.produce();
+        siddhiManager.addCallback(eventHandler.getStreamName(), consumer);
+        log.info("Added Siddhi callback: " + eventHandler);
+    }
+
+//    public void deleteQuery(CepQuery query) {
+//        String queryId = cache.get(query);
+//        if(queryId == null) {
+//            throw new QueryDoesNotExistException(query);
+//        }
+//        siddhiManager.removeQuery(queryId);
+//        cache.remove(query);
+//        log.info("Removed Siddhi query: " + query);
+//    }
+//
+//    public void updateQuery(CepQuery query) {
+//        deleteQuery(query);
+//        addQuery(query);
+//        log.info("Updated Siddhi query: " + query);
+//    }
 }
