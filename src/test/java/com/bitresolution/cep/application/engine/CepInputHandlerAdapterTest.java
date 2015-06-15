@@ -3,9 +3,13 @@ package com.bitresolution.cep.application.engine;
 import com.bitresolution.cep.application.engine.events.CepEvent;
 import com.bitresolution.cep.application.engine.eventtypes.CepEventType;
 import com.bitresolution.cep.application.engine.eventtypes.CepEventTypeAttributeType;
-import com.bitresolution.cep.application.engine.eventtypes.CepEventTypeMapper;
 import org.json.simple.parser.ParseException;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
+import org.wso2.siddhi.core.stream.input.InputHandler;
 
 import java.util.Date;
 
@@ -15,9 +19,23 @@ import static com.bitresolution.cep.application.engine.eventtypes.CepEventType.c
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class CepEventTypeMapperTest {
+@RunWith(MockitoJUnitRunner.class)
+public class CepInputHandlerAdapterTest {
 
-    CepEventTypeMapper mapper = new CepEventTypeMapper();
+    @Mock
+    private InputHandler inputHandler;
+
+    private CepEventType eventType;
+
+
+    CepInputHandlerAdapter adapter;
+
+    @Before
+    public void setUp() throws Exception {
+        eventType = CepEventType.cepEventType().name("EventTypeA").build();
+
+        adapter = new CepInputHandlerAdapter(inputHandler, eventType);
+    }
 
     @Test
     public void shouldMapAllJsonTypes() throws ParseException {
@@ -44,7 +62,7 @@ public class CepEventTypeMapperTest {
                 "}").build();
 
         //when
-        Object[] actual = mapper.map(event, eventType);
+        Object[] actual = adapter.createDataObject(event, eventType);
 
         //then
         Object[] expected = {9, 9L, 9D, 9.9F, "fish", true};
