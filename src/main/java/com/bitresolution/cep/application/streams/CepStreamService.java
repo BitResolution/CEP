@@ -28,6 +28,11 @@ public class CepStreamService {
         return repository.findAll();
     }
 
+    public List<String> findAllSystemStreams() {
+        List<String> systemStreams = engine.getStreams();
+        return systemStreams;
+    }
+
     public CepStream findById(long id) {
         Optional<CepStream> event = repository.findById(id);
         if(event.isPresent()) {

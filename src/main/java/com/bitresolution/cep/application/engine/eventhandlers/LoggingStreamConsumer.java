@@ -6,7 +6,7 @@ import org.wso2.siddhi.core.event.Event;
 import java.util.Arrays;
 
 @Slf4j
-public class NoOpStreamConsumer extends StreamConsumer {
+public class LoggingStreamConsumer extends StreamConsumer {
     @Override
     public void receive(Event[] events) {
         for(Event event : events) {

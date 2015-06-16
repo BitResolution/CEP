@@ -3,15 +3,15 @@ package com.bitresolution.cep.application.engine.eventhandlers;
 import org.springframework.stereotype.Component;
 
 @Component
-public class NoOpStreamConsumerFactory implements StreamConsumerFactory<NoOpStreamConsumer> {
+public class LoggingStreamConsumerFactory implements StreamConsumerFactory<LoggingStreamConsumer> {
     @Override
-    public Class<NoOpStreamConsumer> getStreamConsumerProduced() {
-        return NoOpStreamConsumer.class;
+    public Class<LoggingStreamConsumer> getStreamConsumerProduced() {
+        return LoggingStreamConsumer.class;
     }
 
     @Override
-    public NoOpStreamConsumer produce() {
-        return new NoOpStreamConsumer();
+    public LoggingStreamConsumer produce() {
+        return new LoggingStreamConsumer();
     }
 
     @Override

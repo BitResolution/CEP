@@ -33,47 +33,23 @@
 
 <body th:fragment="content">
 <div>
-    <div class="h1">Create new EventHandler</div>
+    <div class="h1">Create new Event</div>
     <form class="form-horizontal">
-        <input type="hidden" ng-model="eventHandler.id" />
-        <!-- NAME -->
         <div class="form-group">
-            <label for="eventHandler.name" class="col-sm-2 control-label">Name</label>
+            <label for="event.type" class="col-sm-2 control-label">Stream</label>
 
             <div class="col-sm-6">
-                <input id="eventHandler.name" ng-model="eventHandler.name" type="text" class="form-control"
-                       placeholder="Type name"/>
-            </div>
-        </div>
-        <!-- DESCRIPTION -->
-        <div class="form-group">
-            <label for="eventHandler.description" class="col-sm-2 control-label">Description</label>
-
-            <div class="col-sm-6">
-                <input id="eventHandler.description" ng-model="eventHandler.description" type="text" class="form-control"
-                       placeholder="Type description"/>
-            </div>
-        </div>
-        <!-- STREAM -->
-        <div class="form-group">
-            <label for="eventHandler.streamName" class="col-sm-2 control-label">Stream</label>
-
-            <div class="col-sm-6">
-                <select class="form-control" id="eventHandler.streamName" ng-model="eventHandler.streamName"
-                        ng-options="stream as stream for stream in streams">
-                    <option value="" ng-if="!eventHandler.stream">Choose a stream</option>
+                <select class="form-control" id="event.type" ng-model="event.type"
+                        ng-options="type.name as type.name for type in eventTypes">
+                    <option value="" ng-if="!event.type">Choose a type</option>
                 </select>
             </div>
         </div>
-        <!-- STREAM CONSUMER -->
         <div class="form-group">
-            <label for="eventHandler.streamConsumer" class="col-sm-2 control-label">Consumer</label>
+            <label for="event.contents" class="col-sm-2 control-label">Name</label>
 
             <div class="col-sm-6">
-                <select class="form-control" id="eventHandler.streamConsumer" ng-model="eventHandler.streamConsumer"
-                        ng-options="streamConsumer.streamConsumerProduced as streamConsumer.streamConsumerName for streamConsumer in streamConsumers">
-                    <option value="" ng-if="!eventHandler.eventType">Choose a stream consumer</option>
-                </select>
+                <textarea id="event.contents" ng-model="event.contents" class="form-control" rows="10" placeholder="Define partition"></textarea>
             </div>
         </div>
         <div class="form-group">

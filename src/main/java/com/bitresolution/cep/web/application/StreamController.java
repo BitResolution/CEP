@@ -52,4 +52,10 @@ public class StreamController {
         streamService.delete(id);
         return ResponseEntity.ok(null);
     }
+
+    @RequestMapping(value = "/stream/system", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<List<String>> listSystemEvents() {
+        List<String> eventTypes = streamService.findAllSystemStreams();
+        return ResponseEntity.ok(eventTypes);
+    }
 }

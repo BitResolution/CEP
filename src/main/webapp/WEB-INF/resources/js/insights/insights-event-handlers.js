@@ -64,7 +64,7 @@ angular.module('insights-event-handlers', [
 
     .controller('EditEventHandlerController', ['$scope', '$state', '$stateParams', 'EventHandler', 'Stream', 'StreamConsumer', function ($scope, $state, $stateParams, EventHandler, Stream, StreamConsumer) {
         $scope.eventHandler = EventHandler.query();
-        $scope.streams = Stream.query();
+        $scope.streams = Stream.querySystemStreams();
         $scope.streamConsumers = StreamConsumer.query();
 
         if ($stateParams.id == undefined) {

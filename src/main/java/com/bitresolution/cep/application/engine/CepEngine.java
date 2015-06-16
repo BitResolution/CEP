@@ -12,8 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.wso2.siddhi.core.SiddhiManager;
 import org.wso2.siddhi.core.stream.input.InputHandler;
+import org.wso2.siddhi.query.api.definition.StreamDefinition;
 import org.wso2.siddhi.query.api.definition.partition.PartitionDefinition;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -129,6 +132,16 @@ public class CepEngine {
         StreamConsumer consumer = factory.produce();
         siddhiManager.addCallback(eventHandler.getStreamName(), consumer);
         log.info("Added Siddhi callback: " + eventHandler);
+    }
+
+    public List<String> getStreams() {
+        List<StreamDefinition> streamDefinitions = siddhiManager.getStreamDefinitions();
+        List<String> streams = new ArrayList<String>();
+        for(StreamDefinition streamDefinition : streamDefinitions) {
+            streams.add(streamDefinition.getStreamId());
+        }
+
+        return streams;
     }
 
 //    public void deleteQuery(CepQuery query) {

@@ -15,28 +15,29 @@ import java.util.Map;
 public class CepInputHandlerAdapterRegistry {
 
     private final CepStreamService streamService;
-    private final Map<CepStream, CepInputHandlerAdapter> registry;
+    private final Map<String, CepInputHandlerAdapter> registry;
 
     @Autowired
     public CepInputHandlerAdapterRegistry(CepStreamService streamService) {
         this.streamService = streamService;
-        registry = new HashMap<CepStream, CepInputHandlerAdapter>();
+        registry = new HashMap<String, CepInputHandlerAdapter>();
     }
 
     public Iterable<? extends CepInputHandlerAdapter> getForEventType(CepEventType type) {
         List<CepStream> streams = streamService.findByCepEventType(type);
         List<CepInputHandlerAdapter> adapters = new ArrayList<CepInputHandlerAdapter>();
         for(CepStream stream : streams) {
-            adapters.add(registry.get(stream));
+            CepInputHandlerAdapter adapter = registry.get(stream.getName());
+            adapters.add(adapter);
         }
         return adapters;
     }
 
     public void register(CepStream stream, CepInputHandlerAdapter adapter) {
-        registry.put(stream, adapter);
+        registry.put(stream.getName(), adapter);
     }
 
     public void unregister(CepStream stream) {
-        registry.remove(stream);
+        registry.remove(stream.getName());
     }
 }

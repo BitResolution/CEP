@@ -33,7 +33,8 @@ angular.module('insights-streams', [
     .factory('Stream', ['$resource' , function ($resource) {
         return $resource(Insights.basePath + "api/1.0/stream/:id", {id: '@id'}, {
             query: { method: "GET", params: {id: 'list'}, isArray: true},
-            update: { method: 'PUT' }
+            update: { method: 'PUT' },
+            querySystemStreams: { method: "GET", params: {id: 'system'}, isArray: true}
         });
     }])
 
